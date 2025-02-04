@@ -6,6 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+
 public class User extends BaseEntity {
 	
 	
@@ -26,7 +28,6 @@ public class User extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	private Role role;
-    
     
     
 

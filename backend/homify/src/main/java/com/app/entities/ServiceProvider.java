@@ -19,24 +19,31 @@ import lombok.Setter;
 
 public class ServiceProvider extends BaseEntity{
 
-		@OneToMany
-		private List<Services> service_id;
-		@OneToOne
-		private Feedback feedback_id;
+		
 		private int exp;
-		@OneToOne
-		private Customer cid;
+		
 		private double earnings;
 		
-		@OneToMany
-		private List<Bookings> bid;
-		@OneToOne
-		private Payments pid;
-		
-
 		@ManyToOne
+		@JoinColumn(name="customer_id")
+		private User customer;
+		
+		@OneToOne
 		@JoinColumn(name = "sp_id",nullable = false)
 		private User serviceProvider;
+		
+		
+//		@OneToMany
+//		private List<Bookings> bid;
+		
+//		@OneToOne
+//		private Payments pid;
+		
+//		@OneToMany
+//		private List<Services> service_id;
+		
+//		@OneToOne
+//		private Feedback feedback_id;
 		
 		
 	

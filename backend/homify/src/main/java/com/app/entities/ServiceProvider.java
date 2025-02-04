@@ -1,6 +1,6 @@
 package com.app.entities;
 
-import java.util.List;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

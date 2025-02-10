@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.app.entities.ServiceProvider;
 
-public interface  serviceproviderDao extends JpaRepository<ServiceProvider,Long>{
+public interface  ServiceproviderDao extends JpaRepository<ServiceProvider,Long>{
 
 }
+

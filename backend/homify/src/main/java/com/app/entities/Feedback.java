@@ -1,5 +1,9 @@
 package com.app.entities;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -19,21 +23,22 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Feedback extends BaseEntity {
 	
-	private int rating;
+	private double rating;
 	
-//	@ManyToOne
-//	@JoinColumn(name="customer_id")
-//	private User cutomers;
-//	
+	@Column(length = 225)
+	private String content;
+	
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private User customers;
+	
 	@ManyToOne
 	@JoinColumn(name="serviceprovider_id")
 	private ServiceProvider serviceprovider;
 
-	@Column(length = 225)
-	private String content;
+
 	
 	
 }

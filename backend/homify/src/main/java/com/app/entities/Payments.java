@@ -1,5 +1,6 @@
 package com.app.entities;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,10 +37,10 @@ public class Payments extends BaseEntity {
 	
 	private double total_amt;
 	
-//	
-//	@ManyToOne
-//	@JoinColumn(name="customer_id")
-//	private User cutomers;
+	
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private User cutomers;
 	
 	@ManyToOne
 	@JoinColumn(name="serviceprovider_id")

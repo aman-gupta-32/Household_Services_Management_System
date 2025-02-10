@@ -1,4 +1,5 @@
 package com.app.entities;
+import com.app.entities.Bookings;
 
 import java.time.LocalDateTime;
 
@@ -15,16 +16,19 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Services extends BaseEntity{
 
 	private String name;
 	
 	private double price;
 	
+	private String status;
+	
+	
 	@ManyToOne
 	@JoinColumn(name="serviceprovider_id")
 	private ServiceProvider serviceprovider;
+
 	
 //	@ManyToOne
 //	@JoinColumn(name="customer_id")

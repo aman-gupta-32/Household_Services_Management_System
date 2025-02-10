@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,11 +24,17 @@ public class BaseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
 	
-	@CreationTimestamp
-	@Column(name="created_on")
+	//@CreationTimestamp
+	//@Column(name="created_on")
+	//private LocalDate createdOn;
+	
+	@Column(name = "created_on", updatable = false)
+	@Temporal(TemporalType.DATE)
 	private LocalDate createdOn;
 	
+	
+	@Column(name = "updated_on")
+	@Temporal(TemporalType.TIMESTAMP)
 	@UpdateTimestamp
-	@Column(name="updated_on")
 	private	LocalDateTime updatedOn;
 }

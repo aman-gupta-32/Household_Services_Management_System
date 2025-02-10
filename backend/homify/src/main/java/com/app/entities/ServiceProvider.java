@@ -1,8 +1,13 @@
 package com.app.entities;
 
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
+
+//import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -13,15 +18,18 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="service_provider")
+@Table(name = "service_provider")
 @Getter
 @Setter
-
 public class ServiceProvider extends BaseEntity{
 
 		
 		private int exp;
 		
+		@ManyToOne(fetch = FetchType.LAZY)
+		@JoinColumn(name = "user_id") 
+		 private User user;
+		 
 		private double earnings;
 		
 		@ManyToOne
@@ -31,20 +39,14 @@ public class ServiceProvider extends BaseEntity{
 		@OneToOne
 		@JoinColumn(name = "sp_id",nullable = false)
 		private User serviceProvider;
+
+		 @OneToMany(mappedBy = "serviceprovider", cascade = CascadeType.ALL)
+		private List<Feedback> feedbacks;
+		 
+    	public User getUser()
+	   {
+		return user;
+     	}
+
 		
-		
-//		@OneToMany
-//		private List<Bookings> bid;
-		
-//		@OneToOne
-//		private Payments pid;
-		
-//		@OneToMany
-//		private List<Services> service_id;
-		
-//		@OneToOne
-//		private Feedback feedback_id;
-		
-		
-	
 }

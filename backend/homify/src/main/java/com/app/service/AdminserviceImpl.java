@@ -1,15 +1,18 @@
 package com.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import com.app.DTO.TestDTO;
 import com.app.dao.AdminDao;
-import com.app.dao.serviceproviderDao;
-import com.app.dao.servicesDao;
-import com.app.entities.ServiceProvider;
-import com.app.entities.Services;
+import com.app.dao.BookingsDao;
+import com.app.dao.ServiceproviderDao;
+import com.app.entities.Bookings;
 import com.app.entities.User;
 
 
@@ -20,22 +23,11 @@ public class AdminserviceImpl implements Adminservice {
 	private AdminDao adminDao;
 	
 	@Autowired
-	private serviceproviderDao spdao;
-
+	private BookingsDao bd;
+	
 	@Autowired
-	private servicesDao sdao;
-
-	@Override
-	public List<User> getAllCustomers() {
-		return adminDao.findAll();
-	}
-
-	@Override
-	public List<User> getAllServiceProviders() {
-		
-		return adminDao.findAll();
-
-	}
+	private ServiceproviderDao spdao;
+	
 
 	@Override
 	public String deleteServiceProviderbyId(Long id) {
@@ -45,19 +37,5 @@ public class AdminserviceImpl implements Adminservice {
 			}
 		
 		return "id does not exist";
-	}
-
-	@Override
-	public String addNewService(Services services) {
-
-		servicesDao.save(services);	
-		return "Service added successfully with ID: " + services.getId();
-    }
-
-	@Override
-	public List<Services> getAllServices() {
-
-		
-		return null;
 	}
 	}

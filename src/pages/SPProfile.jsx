@@ -220,7 +220,7 @@ export default SPProfile;
 */
 
 import React, { useEffect, useState } from "react";
-import { getServiceProviderDetails } from "../services/ServiceProviderService";
+import { getServiceProviderDetails, updateServiceProvider } from "../services/ServiceProviderService";
 
 const SPProfile = ({ providerId }) => {
   const [serviceProvider, setServiceProvider] = useState(null);
@@ -259,17 +259,39 @@ const SPProfile = ({ providerId }) => {
     fetchData();
   }, [providerId]);
 
-  const handleUpdate = (type) => {
+  const handleUpdate = async (type) => {
+
+    let updatedData = {
+      phone_no: contact,
+      email: email,
+      service_area: serviceArea,
+    };
+
+
     if (type === "contact") {
+      updatedData.phone_no = newContact;
       setContact(newContact);
       setIsEditingContact(false);
     } else if (type === "email") {
+      updatedData.email = newEmail;
       setEmail(newEmail);
       setIsEditingEmail(false);
     } else if (type === "serviceArea") {
+      updatedData.service_area = newServiceArea;
       setServiceArea(newServiceArea);
       setIsEditingServiceArea(false);
     }
+
+
+    try{
+      await updateServiceProvider(providerId, updatedData);
+      alert("Updated successfully!");
+    }catch(error){
+      alert("Update failed!");
+    }
+
+
+
   };
 
   if (loading) return <div>Loading...</div>;

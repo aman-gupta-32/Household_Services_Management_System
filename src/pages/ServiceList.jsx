@@ -58,6 +58,7 @@ import React, { useEffect, useState } from "react";
 
 import {
   getServices,
+  updateServiceProvider,
   updateServiceProviderServices,
 } from "../services/ServiceProviderService";
 
@@ -83,7 +84,7 @@ function ServiceList({ providerId }) {
   };
 
   const handleSubmit = async () => {
-    await updateServiceProviderServices(providerId, selectedServices);
+    await updateServiceProvider(providerId, selectedServices);
   };
 
   return (

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth"; // Change to your backend URL
+const API_URL = "http://localhost:8080"; // Change to your backend URL
 
 export const registerCustomer = async (data) => {
   try {
@@ -14,7 +14,7 @@ export const registerCustomer = async (data) => {
 
 export const registerServiceProvider = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}/register/service-provider`, data);
+    const response = await axios.post(`${API_URL}/serviceprovider/register`, data);
     return response.data;
   } catch (error) {
     console.error("Service Provider registration failed:", error);

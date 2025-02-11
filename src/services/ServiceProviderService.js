@@ -45,3 +45,14 @@ export const getServicesByServiceProviderId = async (providerId) => {
   return response.data;
 };
 */
+
+
+
+export const updateServiceProviderServices = async (providerId, serviceIds) => {
+  const response = await fetch("/api/assign-services", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ providerId, serviceIds }),
+  });
+  return response.json();
+};

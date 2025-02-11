@@ -8,27 +8,27 @@ function SignUp() {
       <br />
       <form style={{ marginLeft: "20%" }}>
         <div className="row mb-3">
-          <label htmlFor="fullname" className="col-sm-2 col-form-label">
+          <label htmlFor="name" className="col-sm-2 col-form-label">
             Full Name
           </label>
           <div className="col-sm-10">
             <input
               type="text"
               className="form-control w-50"
-              id="fullname"
+              id="name"
               placeholder="Enter your full name"
             />
           </div>
         </div>
         <div className="row mb-3">
-          <label htmlFor="mobileno" className="col-sm-2 col-form-label">
+          <label htmlFor="phone_no" className="col-sm-2 col-form-label">
             Mobile No
           </label>
           <div className="col-sm-10">
             <input
               type="text"
               className="form-control w-50"
-              id="mobileno"
+              id="phone_no"
               placeholder="Enter your mobile number"
             />
           </div>
@@ -95,12 +95,13 @@ function SignUp() {
   
   // State to hold form values
   const [formData, setFormData] = useState({
-    fullname: "",
-    mobileno: "",
+    name: "",
+    phone_no: "",
     email: "",
     address: "",
     password: "",
-    userType: "customer", // Default selection
+    role: "CUSTOMER",
+    is_active:"YES",
   });
 
   // Handle input change
@@ -113,7 +114,8 @@ function SignUp() {
     e.preventDefault();
 
     try {
-      if (formData.userType === "customer") {
+      console.log(formData);
+      if (formData.role === "CUSTOMER") {
         await registerCustomer(formData);
       } else {
         await registerServiceProvider(formData);
@@ -131,16 +133,16 @@ function SignUp() {
       <br />
       <form style={{ marginLeft: "20%" }}>
         <div className="row mb-3">
-          <label htmlFor="fullname" className="col-sm-2 col-form-label">
-            Full Name
+          <label htmlFor="name" className="col-sm-2 col-form-label">
+             Name
           </label>
           <div className="col-sm-10">
             <input
               type="text"
               className="form-control w-50"
-              id="fullname"
-              name="fullname"
-              value={formData.fullname}
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               placeholder="Enter your full name"
               required
@@ -149,16 +151,16 @@ function SignUp() {
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="mobileno" className="col-sm-2 col-form-label">
+          <label htmlFor="phone_no" className="col-sm-2 col-form-label">
             Mobile No
           </label>
           <div className="col-sm-10">
             <input
               type="text"
               className="form-control w-50"
-              id="mobileno"
-              name="mobileno"
-              value={formData.mobileno}
+              id="phone_no"
+              name="phone_no"
+              value={formData.phone_no}
               onChange={handleChange}
               placeholder="Enter your mobile number"
               required
@@ -228,9 +230,9 @@ function SignUp() {
               <input
                 className="form-check-input"
                 type="radio"
-                name="userType"
-                value="customer"
-                checked={formData.userType === "customer"}
+                name="role"
+                value="CUSTOMER"
+                checked={formData.role === "CUSTOMER"}
                 onChange={handleChange}
               />
               <label className="form-check-label">Customer</label>
@@ -239,9 +241,9 @@ function SignUp() {
               <input
                 className="form-check-input"
                 type="radio"
-                name="userType"
-                value="service_provider"
-                checked={formData.userType === "service_provider"}
+                name="role"
+                value="SERVICE_PROVIDER"
+                checked={formData.role === "SERVICE_PROVIDER"}
                 onChange={handleChange}
               />
               <label className="form-check-label">Service Provider</label>

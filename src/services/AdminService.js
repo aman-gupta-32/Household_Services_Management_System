@@ -5,7 +5,7 @@ const baseURL = "http://localhost:8080"; // Update this with your backend URL
 // Function to fetch all customers
 export const getAllCustomers = async () => {
   try {
-    const response = await axios.get(`${baseURL}/admin/customers`);
+    const response = await axios.get(`${baseURL}/admin/displaycustomers`);
     console.log("Fetched Customers:", response.data);
     return response.data;
   } catch (error) {
@@ -16,7 +16,7 @@ export const getAllCustomers = async () => {
 
 export const getServiceProviders = async () => {
   try {
-    const response = await axios.get(`${baseURL}/serviceprovider`);
+    const response = await axios.get(`${baseURL}/admin/displaycustomers`);
     return response.data;
   } catch (error) {
     console.error("Error fetching service providers:", error);

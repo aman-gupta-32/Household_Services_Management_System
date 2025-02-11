@@ -61,6 +61,7 @@ import {
   updateServiceProvider,
   updateServiceProviderServices,
 } from "../services/ServiceProviderService";
+import { redirect } from "react-router-dom";
 
 function ServiceList({ providerId }) {
   const [services, setServices] = useState([]);
@@ -84,9 +85,12 @@ function ServiceList({ providerId }) {
   };
 
   const handleSubmit = async () => {
-    await updateServiceProvider(providerId, selectedServices);
+    //alert("What are you doin?")
+    redirect('localhost:3000/dashboard');
+    await updateServiceProviderServices(providerId, selectedServices);
+    alert("Services saved successfully!");
   };
-
+  
   return (
     <div>
       <h1 style={{ backgroundColor: "grey", height: "50px" }}>

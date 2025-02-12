@@ -118,8 +118,8 @@ export default Customers;
 */
 
 import React, { useState, useEffect } from "react";
-import NavBar from "../components/NavBar";
-import { getAllCustomers } from "../services/AdminService"; // Import the service
+import NavBar from "../../components/NavBar";
+import { getAllCustomers } from "../../services/AdminService"; // Import the service
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);

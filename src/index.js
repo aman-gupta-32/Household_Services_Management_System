@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Login from './pages/Login';
-import Services from './pages/Services';
+import Services from './pages/customer/Services';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

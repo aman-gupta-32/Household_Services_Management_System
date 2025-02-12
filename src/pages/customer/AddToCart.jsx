@@ -84,8 +84,11 @@ function AddToCart() {
 export default AddToCart;
 */
 
+
+
+
 import React, { useState } from "react";
-import shoppingCart from "../assets/shopping-cart.png";
+import shoppingCart from "../../assets/shopping-cart.png";
 
 function AddToCart() {
   const [selectedDate, setSelectedDate] = useState("");
@@ -245,3 +248,4 @@ function AddToCart() {
 }
 
 export default AddToCart;
+

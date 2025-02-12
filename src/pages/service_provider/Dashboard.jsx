@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import profileImg from "../assets/7179048.png"
-import NavBar from "../components/NavBar";
+import profileImg from "../../assets/7179048.png";
+import NavBar from "../../components/NavBar";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -12,7 +12,12 @@ const Dashboard = () => {
           <a className="navbar-brand" href="#">
             Homify
           </a>
-          <img style={{width:"50px", cursor:"pointer"}} src={profileImg} alt="" onClick={()=>navigate('/spprofile')} />
+          <img
+            style={{ width: "50px", cursor: "pointer" }}
+            src={profileImg}
+            alt=""
+            onClick={() => navigate("/spprofile")}
+          />
         </div>
       </nav>
       <div className="container mt-5 pt-5">
@@ -37,7 +42,7 @@ const Dashboard = () => {
           <div
             className="col-md-3"
             style={{ cursor: "pointer" }}
-            onClick={() => navigate('/jobs')}
+            onClick={() => navigate("/jobs")}
           >
             <div className="card text-center">
               <div className="card-body">

@@ -1,6 +1,7 @@
-import img48 from "../assets/7179048.png";
-import img10 from "../assets/11413110.png";
-import NavBar from "../components/NavBar";
+import img48 from "../../assets/7179048.png";
+import img10 from "../../assets/11413110.png";
+
+import NavBar from "../../components/NavBar";
 
 function AdminHome() {
   return (

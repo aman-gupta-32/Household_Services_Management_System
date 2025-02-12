@@ -318,8 +318,9 @@ export default ManageServiceProvider;
 
 
 import React, { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar.jsx';
-import { getServiceProviders } from '../services/AdminService.js';
+import { getServiceProviders } from '../../services/AdminService.js';
+
+import NavBar from '../../components/NavBar.jsx';
 
 const ManageServiceProvider = () => {
   const [searchTerm, setSearchTerm] = useState('');

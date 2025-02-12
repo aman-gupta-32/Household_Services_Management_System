@@ -324,7 +324,7 @@ function Home() {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="/login?role=sp">
+                      <a className="dropdown-item" href="/login">
                         Login
                       </a>
                     </li>
@@ -346,7 +346,7 @@ function Home() {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="/login?role=customer">
+                      <a className="dropdown-item" href="/login">
                         Login
                       </a>
                     </li>

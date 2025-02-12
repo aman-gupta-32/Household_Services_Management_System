@@ -1,8 +1,6 @@
-import my_images from "../assets/wallet.jpg";
-import credit_card_image from "../assets/credit_card.jpg";
-import upi_icon_image from "../assets/upi_icon_image.png";
-
-
+import my_images from "../../assets/wallet.jpg";
+import credit_card_image from "../../assets/credit_card.jpg";
+import upi_icon_image from "../../assets/upi_icon_image.png";
 
 function PaymentPage() {
   return (
@@ -25,28 +23,34 @@ function PaymentPage() {
       <div style={{ padding: "10%" }}>
         <table className="table border table-borderless">
           <tbody>
-            
             <tr>
-              
-              <a href="/feedback" style={{textDecoration:"none",display:"inline"}}>
-              
-              <td>Cash</td>
+              <a
+                href="/feedback"
+                style={{ textDecoration: "none", display: "inline" }}
+              >
+                <td>Cash</td>
               </a>
               <td>
                 <img src={my_images} alt="Cash img" width="50px" />
               </td>
             </tr>
             <tr>
-            <a href="/feedback" style={{textDecoration:"none",display:"inline"}}>
-              <td>UPI</td>
+              <a
+                href="/feedback"
+                style={{ textDecoration: "none", display: "inline" }}
+              >
+                <td>UPI</td>
               </a>
               <td>
                 <img src={upi_icon_image} alt="UPI img" width="50px" />
               </td>
             </tr>
             <tr>
-            <a href="/feedback" style={{textDecoration:"none",display:"inline"}}>
-              <td>Credit Card</td>
+              <a
+                href="/feedback"
+                style={{ textDecoration: "none", display: "inline" }}
+              >
+                <td>Credit Card</td>
               </a>
               <td>
                 <img

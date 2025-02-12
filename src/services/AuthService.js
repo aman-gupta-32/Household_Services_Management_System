@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8080"; // Change to your backend URL
 
 export const registerCustomer = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}/register/customer`, data);
+    const response = await axios.post(`${API_URL}/customer/register`, data);
     return response.data;
   } catch (error) {
     console.error("Customer registration failed:", error);
@@ -14,7 +14,10 @@ export const registerCustomer = async (data) => {
 
 export const registerServiceProvider = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}/serviceprovider/register`, data);
+    const response = await axios.post(
+      `${API_URL}/serviceprovider/register`,
+      data
+    );
     return response.data;
   } catch (error) {
     console.error("Service Provider registration failed:", error);
@@ -22,12 +25,12 @@ export const registerServiceProvider = async (data) => {
   }
 };
 
-
 export const loginUser = async (email, password) => {
-    try {
-      const response = await axios.post(`${API_URL}/login`, { email, password });
-      return response.data; 
-    } catch (error) {
-      throw new Error(error.response?.data?.message || "Login failed");
-    }
-  };
+  try {
+    console.log(password);
+    const response = await axios.post(`${API_URL}/login`, { email, password });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Login failed");
+  }
+};

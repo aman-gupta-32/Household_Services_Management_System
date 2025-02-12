@@ -235,8 +235,8 @@ export default Bookings;
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import NavBar from "../components/NavBar";
-import { getAllBookings } from "../services/BookingsService";
+import NavBar from "../../components/NavBar";
+import { getAllBookings } from "../../services/BookingsService";
 
 const NavBarBookings = ({ onSearch, onFilter }) => {
   return (

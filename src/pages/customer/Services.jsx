@@ -1,4 +1,4 @@
-import Card from "../components/Card";
+import Card from "../../components/Card";
 
 function Services() {
   return (
@@ -72,7 +72,10 @@ function Services() {
             alt={"Painting"}
           />
         </a>
-        <a href="/addtocart" style={{ textDecoration: "none" , height:"800px"}}>
+        <a
+          href="/addtocart"
+          style={{ textDecoration: "none", height: "800px" }}
+        >
           <Card
             src={
               "https://kitchenaid-h.assetsadobe.com/is/image/content/dam/business-unit/whirlpoolv2/en-us/marketing-content/site-assets/page-content/oc-articles/7-laundry-tips-and-tricks-for-washing-clothes/LaundryTipsAndTricks_Thumbnail.jpg?wid=1200&fmt=webp"

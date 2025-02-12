@@ -30,8 +30,11 @@ export const updateServiceProvider = async (providerId, updatedData) => {
 };
 
 export const getServiceProviderDetails = async (providerId) => {
-  console.log(`${baseURL}/serviceprovider/${providerId}`);
-  const response = await axios.get(`${baseURL}/serviceprovider/${providerId}`);
+  console.log(`${baseURL}/serviceprovider/profile/${providerId}`);
+  const response = await axios.get(
+    `${baseURL}/serviceprovider/profile/${providerId}`
+  );
+
   console.log(response.data);
   return response.data;
 };
@@ -46,13 +49,15 @@ export const getServicesByServiceProviderId = async (providerId) => {
 };
 */
 
-
-
-export const updateServiceProviderServices = async (providerId, serviceIds) => {
-  const response = await fetch("/api/assign-services", {
+export const updateServiceProviderServices = async (providerId, services) => {
+  // console.log(services[0].name);
+  const response = await fetch(`${baseURL}/serviceprovider/${providerId}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ providerId, serviceIds }),
+    body: JSON.stringify({
+      name: services[0].name,
+      price: services[0].price,
+    }),
   });
   return response.json();
 };

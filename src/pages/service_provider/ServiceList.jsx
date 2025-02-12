@@ -1,4 +1,4 @@
-import ServiceCard from "../components/ServiceCard";
+import ServiceCard from "../../components/ServiceCard";
 
 /*
 function ServiceList() {
@@ -60,8 +60,8 @@ import {
   getServices,
   updateServiceProvider,
   updateServiceProviderServices,
-} from "../services/ServiceProviderService";
-import { redirect } from "react-router-dom";
+} from "../../services/ServiceProviderService";
+import { data, redirect } from "react-router-dom";
 
 function ServiceList({ providerId }) {
   const [services, setServices] = useState([]);
@@ -84,13 +84,27 @@ function ServiceList({ providerId }) {
     );
   };
 
+  /*
   const handleSubmit = async () => {
     //alert("What are you doin?")
-    redirect('localhost:3000/dashboard');
+   // redirect('localhost:3000/dashboard');
     await updateServiceProviderServices(providerId, selectedServices);
     alert("Services saved successfully!");
+  };  */
+
+  const handleSubmit = async () => {
+    const selectedServiceObjects = services
+      .filter((service) => selectedServices.includes(service.id))
+      .map((service) => ({
+        id: service.id,
+        name: service.name,
+        price: service.price,
+      }));
+
+    await updateServiceProviderServices(providerId, selectedServiceObjects);
+    alert("Services saved successfully!");
   };
-  
+
   return (
     <div>
       <h1 style={{ backgroundColor: "grey", height: "50px" }}>

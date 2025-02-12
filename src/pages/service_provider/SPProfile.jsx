@@ -220,7 +220,10 @@ export default SPProfile;
 */
 
 import React, { useEffect, useState } from "react";
-import { getServiceProviderDetails, updateServiceProvider } from "../services/ServiceProviderService";
+import {
+  getServiceProviderDetails,
+  updateServiceProvider,
+} from "../../services/ServiceProviderService";
 
 const SPProfile = ({ providerId }) => {
   const [serviceProvider, setServiceProvider] = useState(null);
@@ -228,27 +231,25 @@ const SPProfile = ({ providerId }) => {
   const [error, setError] = useState(null);
   const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
-  const [serviceArea, setServiceArea] = useState("");
 
   const [isEditingContact, setIsEditingContact] = useState(false);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
-  const [isEditingServiceArea, setIsEditingServiceArea] = useState(false);
 
   const [newContact, setNewContact] = useState("");
   const [newEmail, setNewEmail] = useState("");
-  const [newServiceArea, setNewServiceArea] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getServiceProviderDetails(providerId);
+        // console.log(providerId);
+
         setServiceProvider(data);
         setContact(data.phone_no || "");
         setEmail(data.email || "");
-        setServiceArea(data.service_area || "");
+
         setNewContact(data.phone_no || "");
         setNewEmail(data.email || "");
-        setNewServiceArea(data.service_area || "");
       } catch (error) {
         setError(error.message);
       } finally {
@@ -260,13 +261,10 @@ const SPProfile = ({ providerId }) => {
   }, [providerId]);
 
   const handleUpdate = async (type) => {
-
     let updatedData = {
       phone_no: contact,
       email: email,
-      service_area: serviceArea,
     };
-
 
     if (type === "contact") {
       updatedData.phone_no = newContact;
@@ -276,22 +274,14 @@ const SPProfile = ({ providerId }) => {
       updatedData.email = newEmail;
       setEmail(newEmail);
       setIsEditingEmail(false);
-    } else if (type === "serviceArea") {
-      updatedData.service_area = newServiceArea;
-      setServiceArea(newServiceArea);
-      setIsEditingServiceArea(false);
     }
 
-
-    try{
+    try {
       await updateServiceProvider(providerId, updatedData);
       alert("Updated successfully!");
-    }catch(error){
+    } catch (error) {
       alert("Update failed!");
     }
-
-
-
   };
 
   if (loading) return <div>Loading...</div>;
@@ -316,12 +306,13 @@ const SPProfile = ({ providerId }) => {
               </tr>
             </thead>
             <tbody>
-              {serviceProvider.services.map((service, index) => (
-                <tr key={index} className="border">
-                  <td className="border px-4 py-2">{index + 1}</td>
-                  <td className="border px-4 py-2">{service}</td>
-                </tr>
-              ))}
+              {Array.isArray(serviceProvider.services) &&
+                serviceProvider.services.map((service, index) => (
+                  <tr key={index} className="border">
+                    <td className="border px-4 py-2">{index + 1}</td>
+                    <td className="border px-4 py-2">{service}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
           <br />
@@ -380,29 +371,7 @@ const SPProfile = ({ providerId }) => {
           </div>
 
           <br />
-          <div className="flex items-center space-x-3">
-            <p className="font-semibold">Service Area:</p>
-            {isEditingServiceArea ? (
-              <input
-                type="text"
-                value={newServiceArea}
-                onChange={(e) => setNewServiceArea(e.target.value)}
-                className="border px-2 py-1 w-40"
-              />
-            ) : (
-              <p>{serviceArea}</p>
-            )}
-            <button
-              onClick={() =>
-                isEditingServiceArea
-                  ? handleUpdate("serviceArea")
-                  : setIsEditingServiceArea(true)
-              }
-              className="bg-purple-200 px-4 py-1 rounded"
-            >
-              {isEditingServiceArea ? "Save" : "Edit"}
-            </button>
-          </div>
+          <div className="flex items-center space-x-3"></div>
         </div>
       </div>
     </div>

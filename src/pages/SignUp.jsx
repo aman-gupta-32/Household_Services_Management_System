@@ -131,7 +131,7 @@ function SignUp() {
     <div className="container mt-5">
       <h2 className="text-center">Sign Up</h2>
       <br />
-      <form style={{ marginLeft: "20%" }}>
+      <form style={{ marginLeft: "20%" }} onSubmit={handleSubmit}>
         <div className="row mb-3">
           <label htmlFor="name" className="col-sm-2 col-form-label">
              Name
@@ -253,7 +253,7 @@ function SignUp() {
 
         <br />
         <div className="text-center" style={{ marginRight: "30%" }}>
-          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+          <button type="submit" className="btn btn-primary">
             Sign Up
           </button>
         </div>

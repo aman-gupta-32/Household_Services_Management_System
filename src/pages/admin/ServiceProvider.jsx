@@ -125,8 +125,8 @@ export default ServiceProvider;
 
 
 import React, { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar';
-import { getServiceProviders } from '../services/AdminService';
+import NavBar from '../../components/NavBar';
+import { getServiceProviders } from '../../services/AdminService';
 
 const NavBarServiceProviders = ({ onSearch, onFilter }) => {
   return (

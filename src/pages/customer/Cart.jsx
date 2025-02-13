@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -5,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 function Cart() {
   const navigate = useNavigate(); 
 
+
+  const [bookings,setBookings] = useState("");
 
   return (
     <div>
@@ -15,6 +18,7 @@ function Cart() {
       <br />
       <br />
 
+      
       <table class="table table-hover">
         <thead>
           <tr>

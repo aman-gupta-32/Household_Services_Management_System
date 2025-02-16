@@ -1,13 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
+import { addBookings } from "../../services/CustomerService";
 
 function Cart() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
+  const [bookings, setBookings] = useState([]);
 
-  const [bookings,setBookings] = useState("");
+  useEffect(() => {
+    const storedBookingData = localStorage.getItem("bookingData");
+    console.log(bookings);
+    if (storedBookingData) {
+      const parsedData = JSON.parse(storedBookingData);
+      console.log(parsedData);
+      //setBookings([parsedData]);
+      setBookings(Array.isArray(parsedData) ? parsedData : [parsedData]);
+    }
+  }, []);
+
+  const handleCheckout = async () => {
+    if (!bookings) {
+      alert("No items in cart");
+      return;
+    }
+
+    //const bookingsToSubmit = bookings.map(({ price, spname,sname, ...rest }) => rest);
+
+    const bookingsToSubmit = {
+      ...bookings[0],
+      bookingSlot: bookings[0].bookingSlot.toString(),
+      customersId: bookings[0].customersId.toString(),
+      servicesId: bookings[0].servicesId.toString(),
+      date: bookings[0].date,
+      status: bookings[0].status
+    };
+    
+
+    console.log(bookingsToSubmit);
+
+    try {
+      await addBookings(bookingsToSubmit);
+      alert("Booking successfully added!");
+      //localStorage.removeItem("bookingData"); // Clear the cart after successful booking
+      navigate("/confirmation");
+    } catch (error) {
+      console.error("Error adding booking:", error);
+      alert("There was an error processing your booking.");
+    }
+  };
 
   return (
     <div>
@@ -18,59 +58,38 @@ function Cart() {
       <br />
       <br />
 
-      
-      <table class="table table-hover">
+      <table className="table table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Service Name</th>
             <th scope="col">Service Provider Name</th>
+            <th scope="col">Date</th>
             <th scope="col">Slot</th>
             <th scope="col">Price</th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>50</td>
-            
-            <td><button type="button" class="btn btn-danger">Delete</button></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>50</td>
-            <td><button type="button" class="btn btn-danger">Delete</button></td>
-
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry the Bird</td>
-            <td>empty</td>
-            <td>@twitter</td>
-            <td>50</td>
-            <td><button type="button" class="btn btn-danger">Delete</button></td>
-
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>cleaning</td>
-            <td>Ramesh</td>
-            <td>4PM</td>
-            <td>50</td>
-
-            <td><button type="button" class="btn btn-danger">Delete</button></td>
-          </tr>
+          {bookings.map((booking, index) => (
+            <tr key={index}>
+              <th scope="row">{index + 1}</th>
+              <td>{booking.sname}</td>
+              <td>{booking.spname}</td>
+              <td>{booking.date}</td>
+              <td>{booking.bookingSlot}</td>
+              <td>{booking.price}</td>
+              <td>
+                <button type="button" class="btn btn-danger">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
 
           <tr>
             <td></td>
-            
+
+            <td></td>
             <td></td>
             <td></td>
             <th>Total price</th>
@@ -79,8 +98,18 @@ function Cart() {
         </tbody>
       </table>
 
-      <button type="button" class="btn btn-primary" onClick={()=> navigate("/confirmation")}>Confirm</button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        style={{ marginRight: "10px" }}
+        onClick={() => navigate("/addtocart")}
+      >
+        Add Service
+      </button>
 
+      <button type="button" class="btn btn-primary" onClick={handleCheckout}>
+        Confirm
+      </button>
     </div>
   );
 }

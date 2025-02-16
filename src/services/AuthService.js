@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080"; // Change to your backend URL
+const API_URL = "http://localhost:8080"; 
 
 export const registerCustomer = async (data) => {
   try {

@@ -1,89 +1,3 @@
-/*import shoppingCart from "../assets/shopping-cart.png";
-
-function AddToCart() {
-  const col = {
-    float: "left",
-    width: "32%",
-    margin: "10px",
-  };
-  return (
-    <div>
-      <nav class="navbar bg-body-tertiary" style={{ marginBottom: "50px" }}>
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            <img
-              src="https://www.wackybuttons.com/designcodes/0/110/1102098.png"
-              alt="Homify"
-              width="30"
-              height="24"
-            />
-          </a>
-        </div>
-      </nav>
-
-      <div class="row" style={{ boxSizing: "border-box", margin: "10px" }}>
-        <div class="column" style={col}>
-          <div class="card" style={{ width: "18rem" }}>
-            <div class="card-header">Featured</div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">An item</li>
-              <li class="list-group-item">A second item</li>
-              <li class="list-group-item">A third item</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="column" style={col}>
-          <a href="/cart" style={{ display: "inline", textDecoration: "none" }}>
-            <div
-              class="card mb-3"
-              style={{ maxWidth: "500px", textAlign: "center" }}
-            >
-              <div class="row g-0">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <p class="card-text">
-                    <small class="text-body-secondary">
-                      Last updated 3 mins ago
-                    </small>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="column" style={col}>
-          <div
-            class="card mb-3"
-            style={{ maxWidth: "500px", textAlign: "center" }}
-          >
-            <div class="row g-0">
-              <div class="card-body">
-                <img
-                  src={shoppingCart}
-                  alt="shopping"
-                  style={{ width: "50px", height: "50px" }}
-                />
-
-                <p style={{ fontWeight: "bold" }}>No Items in your cart</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default AddToCart;
-*/
-
 import React, { use, useState } from "react";
 import shoppingCart from "../../assets/shopping-cart.png";
 import { useEffect } from "react";
@@ -91,15 +5,16 @@ import { addBookings, getAllServices } from "../../services/CustomerService";
 
 import { useNavigate } from "react-router-dom";
 
-
 function AddToCart() {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
   const [selectedServiceId, setSelectedServiceId] = useState("");
   const [services, setServices] = useState([]);
+  const [serviceName, setServiceName] = useState("");
+  const [serviceProviderName, setServiceProviderName] = useState("");
+  const [price,setPrice] = useState("");
+  const [spId, setSpId] = useState("");
 
-
-  
   const navigate = useNavigate();
 
   const [bookingData, setBookingData] = useState({
@@ -108,6 +23,11 @@ function AddToCart() {
     servicesId: "",
     customersId: localStorage.getItem("userId"),
     status: "PENDING",
+    sname:"",
+    spname:"",
+    price:"",
+    spId:"",
+    
   });
 
   useEffect(() => {
@@ -133,7 +53,7 @@ function AddToCart() {
     //console.log(e.target.name);
   };  */
 
-  const handleConfirm = async () => {
+  const handleConfirm = () => {
     console.log(localStorage.getItem("userId"));
     const updatedBooking = {
       ...bookingData,
@@ -141,18 +61,32 @@ function AddToCart() {
       date: selectedDate,
       servicesId: selectedServiceId,
       customersId: localStorage.getItem("userId"),
+      sname: serviceName,
+      spname: serviceProviderName,
+      price: price,
+      spId: spId
     };
 
     setBookingData(updatedBooking);
+    let storedBookings =
+      JSON.parse(localStorage.getItem("bookingData")) || [];
 
-    try {
+      if (!Array.isArray(storedBookings)) {
+        storedBookings = [storedBookings];
+      }
+    storedBookings.push(updatedBooking);
+    localStorage.setItem("bookingData", JSON.stringify(storedBookings));
+    alert("Booking added to cart!");
+    navigate("/cart");
+
+    /*try {
       await addBookings(updatedBooking);
       alert("Booking done successfully!");
       navigate("/cart")
     } catch (error) {
       console.error("Error adding booking:", error);
       alert("There was an error making the booking.");
-    }
+    }*/
   };
 
   useEffect(() => {
@@ -249,6 +183,10 @@ function AddToCart() {
                       name="date"
                       onChange={(e) => {
                         setSelectedDate(e.target.value);
+                        setServiceName(service.sname);
+                        setServiceProviderName(service.spname);
+                        setPrice(service.price);
+                        setSpId(service.spId);
                       }}
                       //onChange={(e) => handleChange(e)}
                       value={selectedDate}

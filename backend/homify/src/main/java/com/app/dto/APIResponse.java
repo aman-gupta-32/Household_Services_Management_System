@@ -7,17 +7,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@Setter
 @Getter
-
-public class APIResponse {
+@Setter
+public class ApiResponse {
 	private LocalDateTime timeStamp;
 	private String message;
-	public APIResponse(String message) {
+
+	public ApiResponse(String message) {
 		super();
-		this.timeStamp = LocalDateTime.now();
 		this.message = message;
+		this.timeStamp=LocalDateTime.now();
 	}
-	
-	
+
 }

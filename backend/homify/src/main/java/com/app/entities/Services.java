@@ -22,12 +22,14 @@ public class Services extends BaseEntity{
 	
 	private double price;
 	
-	@ManyToOne
-	@JoinColumn(name="serviceprovider_id")
-	private ServiceProvider serviceprovider;
+	private String status;
+	
+//	@ManyToOne
+//	@JoinColumn(name="serviceprovider_id")
+//	private ServiceProvider serviceprovider;
 	
 	@ManyToOne
-	@JoinColumn(name="customer_id")
-	private User customer;
+	@JoinColumn(name="serviceproviders_id")
+	private UserEntity sprovider;
 	
 }

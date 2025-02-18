@@ -26,20 +26,27 @@ import lombok.Setter;
 
 public class Feedback extends BaseEntity {
 	
-	private int rating;
+	private Long rating;
 	
 	@Column(length = 225)
 	private String content;
 	
 	@ManyToOne
 	@JoinColumn(name="customer_id")
-	private User customers;
+	private UserEntity customers;
 	
+//	@ManyToOne
+//	@JoinColumn(name="serviceprovider_id")
+//	private ServiceProvider serviceprovider;
+
 	@ManyToOne
 	@JoinColumn(name="serviceprovider_id")
-	private ServiceProvider serviceprovider;
-
-
+	private UserEntity serviceprovider;
+	
+	
+	@OneToOne
+	@JoinColumn(name="booking_id")
+	private Bookings bookings;
 	
 	
 }

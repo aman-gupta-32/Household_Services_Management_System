@@ -1,12 +1,15 @@
 package com.app.entities;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,21 +28,27 @@ import lombok.Setter;
 public class Bookings extends BaseEntity{
 	
 	
-	private int booking_slot;
+	private Long bookingSlot;
 	
 	private Date date;
-
+	
+	private String status;
+	
 	@ManyToOne
-	@JoinColumn(name="payment_id")
-	private Payments payment;
+	@JoinColumn(name="services_id")
+	private Services services;
+	
+//	@ManyToOne
+//	@JoinColumn(name="payment_id")
+//	private Payments payment;
 	
 	@ManyToOne
 	@JoinColumn(name="customer_id")
-	private User customers;
+	private UserEntity customers;
 	
 	@ManyToOne
 	@JoinColumn(name="serviceprovider_id")
-	private ServiceProvider serviceprovider;
+	private UserEntity serviceprovider;
 	
 
 }

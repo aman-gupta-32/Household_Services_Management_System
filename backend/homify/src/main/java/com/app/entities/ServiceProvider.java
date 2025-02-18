@@ -33,6 +33,8 @@ public class ServiceProvider extends BaseEntity{
 		private User serviceProvider;
 		
 		
+		
+		
 //		@OneToMany
 //		private List<Bookings> bid;
 		
